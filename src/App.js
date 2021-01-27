@@ -597,7 +597,7 @@ class App extends React.PureComponent {
   }
 
   async showLocations(e) {
-    let url = new URL("http://api.geonames.org/searchJSON?");
+    let url = new URL("https://secure.geonames.org/searchJSON?");
     url.searchParams.set('q', e.value);
     url.searchParams.append('lang', lang.lang);
     url.searchParams.append('maxRows', 50);
