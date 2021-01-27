@@ -1,38 +1,379 @@
-.App {
-  text-align: center;
+html {
+  font-size: 16px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.language {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  font-weight: bold;
+  font-size: 1.25rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.language:hover {
+  cursor: pointer;
+}
+
+.searchCity {
+  padding: 1rem;
+  margin-bottom: -2rem;
+  width: 30rem;
+  max-width: 78vw;
+}
+
+.search {
+  width: 100%;
+  padding: .3rem .6rem;
+  font-size: 1rem;
+  border-radius: 0;
+  border: 1px black solid;
+  font-weight: bold;
+}
+
+.locations {
+  position: absolute;
+  width: 31.3rem;
+  max-width: 70vw;
+  height: fit-content;
+  max-height: 33rem;
+  font-size: 1rem;
+  z-index: 1;
+  background-color: rgb(255, 255, 255);
+  overflow-y: auto;
+}
+
+.locations div {
+  border-bottom: 1px solid rgb(88, 88, 88);
+  padding: .3rem .6rem;
+}
+
+.locations div:hover {
+  cursor: pointer;
+  background-color: rgb(4, 104, 235);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.day-details {
+  width: calc(100% - 4rem);
+  text-align: left;
+  padding: 1.5rem 2rem;
+  height: fit-content;
+  font-size: 1.1rem;
+  float: left;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.day-details .big-icon {
+  font-size: 5rem;
+  width: 7rem;
+  float: left;
+  margin: 0 2rem 1rem 0;
+  text-align: center;
+}
+
+.shown-day {
+  position: absolute;
+  margin-top: 7.5rem;
+  text-align: center;
+  font-weight: bold;
+  z-index: -1;
+  width: 7rem;
+}
+
+.shown-day .now {
+  margin-top: .6rem;
+}
+
+.day-details .block1 {
+  float: left;
+  border-left: 1px solid gray;
+  padding: .5rem 1.5rem;
+  margin-top: .5rem
+}
+
+.day-details .block2 {
+  float: left;
+  border-left: 1px solid gray;
+  padding: .5rem 1.5rem;
+  padding-top: 1.25rem;
+  margin-top: .5rem
+}
+
+.day-details .weather-description {
+  width: calc(100% - 9rem);
+}
+
+.day-details .weather-description h3 {
+  margin: 0;
+  font-size: 2rem;
+  width: 100%;
+}
+
+.day-details .temperature {
+  width: fit-content;
+  height: fit-content;
+  text-align: center;
+  float: left;
+  margin-top: .3rem;
+}
+
+.day-details .temperature .temp {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.day-details .temperature .feels {
+  font-size: 1.1rem;
+}
+
+.day-details .visibility i {
+  font-size: 2rem;
+  position: absolute;
+  margin-left: .4rem;
+  margin-top: -.2rem
+}
+
+.day-details .wind i {
+  font-size: 1.5rem;
+  position: absolute;
+  margin-left: .4rem;
+  z-index: -1;
+}
+
+.day-details .beaufort i {
+  font-size: 2rem;
+  position: absolute;
+  margin-left: .4rem;
+  margin-top: -.2rem;
+  z-index: -1;
+}
+
+.clock {
+  font-size: 1.8rem;
+  position: absolute;
+  right: 0;
+  top: 2rem;
+  text-align: right;
+  padding: 1.5rem 2rem;
+}
+
+.clock h4 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.clock .sunrise-sunset {
+  font-size: 1rem;
+}
+
+.clock .sunrise-sunset div {
+  margin-top: .5rem;
+  display: inline-block;
+}
+
+.clock .sunrise-sunset i {
+  font-size: 1.2rem;
+  margin-left: 1rem;
+}
+
+.clock .actual {
+  margin-top: .5rem;
+  font-size: 1rem;
+  color: rgb(4, 99, 182);
+}
+
+.clock .actual:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.days-bar {
+  border-top: 1px solid black;
+  width: calc(100% - 2rem);
+  text-align: center;
+  margin: 1rem;
+  height: fit-content;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.day-weather {
+  width: calc((calc(100% - 2rem) / 7) - 2rem);
+  min-width: 8rem;
+  padding: 1rem;
+  display: inline-block;
+  height: fit-content;
+  font-size: 1.5rem;
+  border-radius: .5rem;
+  border: 1px rgb(255, 255, 255) solid;
+}
+
+.day-weather:hover {
+  background-color: rgb(233, 233, 233);
+  border: 1px gray solid;
+  cursor: pointer;
+}
+
+.day .date {
+  font-size: 1rem;
+  color: rgb(48, 48, 48);
+}
+
+.icon {
+  font-size: 3rem;
+  margin: .5rem 0 .7rem 0;
+}
+
+.temperature {
+  font-size: 1.2rem;
+  width: 100% !important;
+}
+
+.temperature .real {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.temperature .feels {
+  display: inline-block;
+  color: rgb(73, 73, 73);
+}
+
+@media only screen and (max-width: 895px) {
+  html {
+    font-size: 15px;
   }
-  to {
-    transform: rotate(360deg);
+  .day-details .weather-description h3 {
+    width: calc(100% - 13.5rem);
+    height: 8rem;
+  }
+  .day-details .big-icon {
+    margin-bottom: 0;
+  }
+  .day-details .shown-day {
+    width: auto;
+    margin-top: 8rem;
+    text-align: left;
+  }
+  .day-details .shown-day div {
+    display: inline-block;
+    margin-right: 1rem;
+  }
+  .day-details .shown-day .now {
+    margin-top: 0;
+    margin-left: -1rem;
+  }
+  .block1 {
+    margin-top: 2rem !important;
+    clear: both;
+  }
+  .block2 {
+    clear: both;
+    margin-top: 0 !important;
+  }
+  .day-details .temperature {
+    text-align: left;
+  }
+  .days-bar {
+    border-top: none;
+  }
+}
+
+@media only screen and (max-width: 755px) {
+  html {
+    font-size: 14px;
+  }
+  .day-details {
+    padding: .5rem 1rem;
+  }
+  .day-details .big-icon {
+    margin-right: 1rem;
+    margin-bottom: 0;
+    margin-top: 1rem;
+  }
+  .day-details .weather-description h3 {
+    text-align: left;
+    float: left;
+    width: calc(100% - 13.5rem);
+    height: 7rem;
+    margin-top: 1rem;
+  }
+  .day-details .shown-day {
+    top: 3rem;
+  }
+  .day-details .block1 {
+    margin-top: 2.5rem !important;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  body {
+    text-align: center;
+  }
+  .language{
+    top: 5rem;
+  }
+  .clock {
+    position: sticky;
+    top: 0;
+    text-align: center;
+    padding: 0;
+    background-color: rgb(48, 146, 56);
+    padding: 0 .5rem 1rem .5rem;
+    height: 3rem;
+    color: white;
+  }
+  .clock h4 {
+    float: left;
+    text-align: left;
+    font-size: 1.5rem;
+    min-width: 46vw;
+  }
+  .clock .date {
+    font-size: 1.2rem;
+    float: right;
+    margin-top: .33rem;
+  }
+  .clock .time {
+    font-size: 1.2rem;
+    float: right;
+    margin-top: .33rem;
+    margin-right: .5rem;
+  }
+  .clock .sunrise-sunset {
+    float: right;
+  }
+  .clock .actual {
+    float: left;
+    color: rgb(38, 0, 255);
+    margin-top: .2rem;
+    text-decoration: underline;
+  }
+  .day-details {
+    width: calc(100% - 2rem);
+  }
+  .day-details .shown-day {
+    top: 7rem;
+  }
+  .day-details .block1 {
+    margin-top: 2.2rem !important;
+  }
+  .day-details .weather-description {
+    width: calc(100vw - 10rem);
+    float: left;
+  }
+  .day-details .weather-description h3 {
+    width: calc(100vw - 10rem);
+    float: left;
+    font-size: 1.8rem;
   }
 }
