@@ -12,12 +12,18 @@ body {
   scroll-behavior: smooth;
 }
 
+.header {
+  background-color: #00a9ec;
+}
+
 .language {
   position: absolute;
   right: 1rem;
   top: 1rem;
   font-weight: bold;
-  font-size: 1.25rem;
+  font-size: 1rem;
+  padding: .25rem;
+  border: 1px black solid;
 }
 
 .language:hover {
@@ -33,7 +39,7 @@ body {
 
 .search {
   width: 100%;
-  padding: .3rem .6rem;
+  padding: .35rem .6rem .25rem .6rem;
   font-size: 1rem;
   border-radius: 0;
   border: 1px black solid;
@@ -48,18 +54,18 @@ body {
   max-height: 33rem;
   font-size: 1rem;
   z-index: 1;
-  background-color: rgb(255, 255, 255);
+  background-color: #fff;
   overflow-y: auto;
 }
 
 .locations div {
-  border-bottom: 1px solid rgb(88, 88, 88);
+  border-bottom: 1px solid #585858;
   padding: .3rem .6rem;
 }
 
 .locations div:hover {
   cursor: pointer;
-  background-color: rgb(4, 104, 235);
+  background-color: #0468eb;
   color: white;
 }
 
@@ -70,6 +76,7 @@ body {
   height: fit-content;
   font-size: 1.1rem;
   float: left;
+  margin-top: 1.5rem;
 }
 
 .day-details .big-icon {
@@ -164,6 +171,7 @@ body {
   top: 2rem;
   text-align: right;
   padding: 1.5rem 2rem;
+  margin-top: 1.4rem;
 }
 
 .clock h4 {
@@ -188,7 +196,7 @@ body {
 .clock .actual {
   margin-top: .5rem;
   font-size: 1rem;
-  color: rgb(4, 99, 182);
+  color: #0463b6;
 }
 
 .clock .actual:hover {
@@ -206,6 +214,23 @@ body {
   white-space: nowrap;
 }
 
+.days-bar::-webkit-scrollbar {
+  height: .5rem;
+}
+
+.days-bar::-webkit-scrollbar-track {
+  background: #e6e6e6;
+}
+
+.days-bar::-webkit-scrollbar-thumb {
+  background: #747474;
+  border-radius: 1rem;
+}
+
+.days-bar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 .day-weather {
   width: calc((calc(100% - 2rem) / 7) - 2rem);
   min-width: 8rem;
@@ -214,18 +239,19 @@ body {
   height: fit-content;
   font-size: 1.5rem;
   border-radius: .5rem;
-  border: 1px rgb(255, 255, 255) solid;
+  border: 1px #fff solid;
+  transition: .1s;
 }
 
 .day-weather:hover {
-  background-color: rgb(233, 233, 233);
-  border: 1px gray solid;
+  background-color: #e0f3ff;
+  border: 1px #b8b8b8 solid;
   cursor: pointer;
 }
 
 .day .date {
   font-size: 1rem;
-  color: rgb(48, 48, 48);
+  color: #303030;
 }
 
 .icon {
@@ -245,10 +271,10 @@ body {
 
 .temperature .feels {
   display: inline-block;
-  color: rgb(73, 73, 73);
+  color: #494949;
 }
 
-@media only screen and (max-width: 895px) {
+@media only screen and (max-width: 900px) {
   html {
     font-size: 15px;
   }
@@ -308,7 +334,7 @@ body {
     margin-top: 1rem;
   }
   .day-details .shown-day {
-    top: 3rem;
+    top: 4.5rem;
   }
   .day-details .block1 {
     margin-top: 2.5rem !important;
@@ -319,18 +345,27 @@ body {
   body {
     text-align: center;
   }
-  .language{
-    top: 5rem;
+  .language {
+    top: .6rem;
+    right: .5rem;
+  }
+  .header {
+    position: sticky;
+    top: 4.3rem;
+  }
+  .searchCity {
+    padding: .6rem .5rem;
   }
   .clock {
-    position: sticky;
+    position: fixed;
     top: 0;
     text-align: center;
     padding: 0;
-    background-color: rgb(48, 146, 56);
+    background-color: #233a5c;
     padding: 0 .5rem 1rem .5rem;
-    height: 3rem;
+    height: 3.3rem;
     color: white;
+    margin-top: 0;
   }
   .clock h4 {
     float: left;
@@ -354,15 +389,16 @@ body {
   }
   .clock .actual {
     float: left;
-    color: rgb(38, 0, 255);
+    color: rgba(250, 234, 92, 0.89);
     margin-top: .2rem;
     text-decoration: underline;
   }
   .day-details {
+    margin-top: 6rem;
     width: calc(100% - 2rem);
   }
   .day-details .shown-day {
-    top: 7rem;
+    top: 8rem;
   }
   .day-details .block1 {
     margin-top: 2.2rem !important;
@@ -375,5 +411,11 @@ body {
     width: calc(100vw - 10rem);
     float: left;
     font-size: 1.8rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .searchCity {
+    max-width: 74%;
   }
 }
