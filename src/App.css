@@ -17,6 +17,7 @@ body {
 }
 
 .language {
+  background-color: white;
   position: absolute;
   right: 1rem;
   top: 1rem;
