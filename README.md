@@ -1,5 +1,5 @@
 # Pogoda
-> Pogoda w react. [https://frosty-mayer-797a3d.netlify.app](https://frosty-mayer-797a3d.netlify.app)
+> Pogoda w react. [https://pogoda-open-weather.netlify.app](https://pogoda-open-weather.netlify.app)
 
 ## Spis treści
 * [Screeny](#screeny)
