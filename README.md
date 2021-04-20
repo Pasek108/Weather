@@ -13,19 +13,19 @@ Gotowe:
 * React.js
 * [Geonames API](https://www.geonames.org)
 * [OpenWeather OneCall API v2.5](https://openweathermap.org/)
-* HTML/CSS/JS
+* HTML / CSS / JS
 
 ## Ikony
 * [http://erikflowers.github.io/weather-icons/](http://erikflowers.github.io/weather-icons/)
 
 ## Screeny
 ### Wersja na komputer
-![alt text](https://ibb.co/CVBb7wH)
+![alt text](https://i.ibb.co/mhJ9qRc/Przechwytywanie.png)
 
 ### Wersja na tablety
-![alt text](https://ibb.co/82cjpZS)
+![alt text](https://i.ibb.co/mt8HwWM/Przechwytywanie2.png)
 
 ### Wersja mobilna
-![alt text](https://ibb.co/PGxrD5J)
+![alt text](https://i.ibb.co/23qFZjR/Przechwytywanie3.png)
 
 
