@@ -16,14 +16,3 @@ Pogoda w react z wykorzystaniem OpenWeather API i Geonames API. [link do strony]
 ## Ikony
 * [http://erikflowers.github.io/weather-icons/](http://erikflowers.github.io/weather-icons/)
 
-## Screeny
-### Wersja na komputer
-![alt text](https://i.ibb.co/mhJ9qRc/Przechwytywanie.png)
-
-### Wersja na tablety
-![alt text](https://i.ibb.co/mt8HwWM/Przechwytywanie2.png)
-
-### Wersja mobilna
-![alt text](https://i.ibb.co/23qFZjR/Przechwytywanie3.png)
-
-
