@@ -2,12 +2,10 @@
 Pogoda w react z wykorzystaniem OpenWeather API i Geonames API. [link do strony](https://pogoda-open-weather.netlify.app)
 
 ## Funkcje
-Gotowe:
 * Wyświetlanie aktualnej pogody
 * Wyświetlanie dziennej pogody (7 dni)
 * Zamiana lokalizacji
 * Zmiana języka
-* Responsywność
 
 ## Technologie
 * React.js
