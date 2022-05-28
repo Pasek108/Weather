@@ -1,5 +1,5 @@
 # Pogoda
-Pogoda w react z wykorzystaniem OpenWeather API i Geonames API. [link do strony](https://pogoda-open-weather.netlify.app)
+Pogoda w react z wykorzystaniem OpenWeather API i Geonames API.
 
 ## Funkcje
 * Wyświetlanie aktualnej pogody
