@@ -1,6 +1,6 @@
 {
-  "short_name": "Pogoda",
-  "name": "Pogoda open weather",
+  "short_name": "Weather",
+  "name": "Weather",
   "icons": [
     {
       "src": "favicon.ico",
@@ -9,7 +9,5 @@
     }
   ],
   "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#233a5c",
-  "background_color": "#ffffff"
+  "display": "standalone"
 }
