@@ -24,7 +24,6 @@ See [live demo](https://weather-artur-pas.netlify.app).
 
 
 ## Features
-List the ready features here:
 - Detailed weather for choosen location
 - 7 days forsecast
 - Clock
