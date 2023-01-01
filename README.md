@@ -1,25 +1,17 @@
-# Project Name
-Simple weather page in React with Open Weather API and Geonames API.
-Live demo [_here_](https://weather-artur-pas.netlify.app).
+# Weather
+Simple weather page in glassmorphism style that gives detailed data about current weather and next 7 days forecast.<br>
+See [live demo](https://weather-artur-pas.netlify.app).
+
 ![Example screenshot](screenshot.png)
 
 
 ## Table of Contents
-* [General Info](#general-information)
 * [Technologies Used](#technologies-used)
 * [Features](#features)
 * [Setup](#setup)
 * [Usage](#usage)
 * [Project Status](#project-status)
 * [Acknowledgements](#acknowledgements)
-
-
-## General Information
-- Provide general information about your project here.
-- What problem does it (intend to) solve?
-- What is the purpose of your project?
-- Why did you undertake it?
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
 
 
 ## Technologies Used
@@ -43,16 +35,7 @@ List the ready features here:
 
 
 ## Setup
-What are the project requirements/dependencies? Where are they listed? A requirements.txt or a Pipfile.lock file perhaps? Where is it located?
-
-Proceed to describe how to install / setup one's local environment / get started with the project.
-
-
-## Usage
-How does one go about using it?
-Provide various use cases and code examples here.
-
-`write-your-code-here`
+Clone this repo to your desktop and run `npm install` to install all the dependencies and then `npm start` to start development sever.
 
 
 ## Project Status
