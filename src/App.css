@@ -179,6 +179,7 @@ header {
   display: flex;
   flex-flow: row;
   justify-content: flex-start;
+  flex-wrap: wrap;
   align-items: center;
   margin-right: 1rem;
   text-transform: capitalize;
