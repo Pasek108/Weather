@@ -1,142 +1,136 @@
-import React from "react";
-import "./App.css";
+import React from "react"
+import "./App.css"
 
-import SearchCity from "./components/SearchCity";
-import Clock from "./components/Clock";
-import DayDetails from "./components/DayDetails";
-import Forecast from "./components/Forecast";
+import SearchCity from "./components/SearchCity"
+import Clock from "./components/Clock"
+import DayDetails from "./components/DayDetails"
+import Forecast from "./components/Forecast"
 
 export default class App extends React.PureComponent {
   constructor(props) {
-    super(props);
+    super(props)
 
-    let lang = lang_pl;
-    if (localStorage.getItem("lang") === "en") lang = lang_en;
-    else localStorage.setItem("lang", "pl");
+    let lang = lang_pl
+    if (localStorage.getItem("lang") === "en") lang = lang_en
+    else localStorage.setItem("lang", "pl")
 
     this.state = {
       weather_data: undefined,
       displayed_weather: undefined,
       locations: [],
       lang: lang,
-    };
+    }
 
-    this.searchChange = this.searchChange.bind(this);
-    this.resetSearch = this.resetSearch.bind(this);
-    this.changeLanguage = this.changeLanguage.bind(this);
+    this.searchChange = this.searchChange.bind(this)
+    this.resetSearch = this.resetSearch.bind(this)
+    this.changeLanguage = this.changeLanguage.bind(this)
   }
 
   componentDidMount() {
-    let is_location_null = localStorage.getItem("location") == null;
+    let is_location_null = localStorage.getItem("location") == null
 
-    if (is_location_null && this.state.lang.lang === "en") this.getWeather(51.509865, -0.118092, "London", "England", "United Kingdom");
-    if (is_location_null && this.state.lang.lang === "pl") this.getWeather(52.229675, 21.01223, "Warszawa", "Województwo mazowieckie", "Polska");
+    if (is_location_null && this.state.lang.lang === "en") this.getWeather(51.509865, -0.118092, "London", "England", "United Kingdom")
+    if (is_location_null && this.state.lang.lang === "pl") this.getWeather(52.229675, 21.01223, "Warszawa", "Województwo mazowieckie", "Polska")
     else {
-      const location = localStorage.getItem("location").split(";");
-      this.getWeather(location[0], location[1], location[2], location[3], location[4]);
+      const location = localStorage.getItem("location").split(";")
+      this.getWeather(location[0], location[1], location[2], location[3], location[4])
     }
   }
 
   async getWeather(lat, lon, name, adminName, country) {
-    this.setState({ locations: [] });
+    this.setState({ locations: [] })
 
-    let x = lat;
-    let y = lon;
-    document.querySelector(".search").value = `${name}, ${adminName}, ${country}`;
-    localStorage.setItem("location", `${lat};${lon};${name};${adminName};${country}`);
+    let x = lat
+    let y = lon
+    document.querySelector(".search").value = `${name}, ${adminName}, ${country}`
+    localStorage.setItem("location", `${lat};${lon};${name};${adminName};${country}`)
 
-    let url = new URL("https://api.openweathermap.org/data/2.5/onecall");
-    url.searchParams.set("lat", x);
-    url.searchParams.append("lon", y);
-    url.searchParams.append("lang", localStorage.getItem("lang"));
-    url.searchParams.append("units", "metric");
-    url.searchParams.append("exclude", "minutely,alerts");
-    url.searchParams.append("appid", "c85db9a25d5b35109ec7aecb2d7ec070");
+    let url = new URL("https://api.openweathermap.org/data/2.5/onecall")
+    url.searchParams.set("lat", x)
+    url.searchParams.append("lon", y)
+    url.searchParams.append("lang", localStorage.getItem("lang"))
+    url.searchParams.append("units", "metric")
+    url.searchParams.append("exclude", "minutely,alerts")
+    url.searchParams.append("appid", "c85db9a25d5b35109ec7aecb2d7ec070")
 
-    const api_call = await fetch(url);
-    const response = await api_call.json();
+    const api_call = await fetch(url)
+    const response = await api_call.json()
 
-    this.setState({ weather_data: response });
+    this.setState({ weather_data: response })
   }
 
   searchChange() {
-    const value = document.querySelector(".search").value.trim();
+    const value = document.querySelector(".search").value.trim()
 
-    if (value !== "") this.showLocations(value);
-    else this.setState({ locations: [] });
+    if (value !== "") this.showLocations(value)
+    else this.setState({ locations: [] })
   }
 
   resetSearch(e) {
-    if (e.target.classList.contains("search") || e.target.classList.contains("location")) return;
+    if (e.target.classList.contains("search") || e.target.classList.contains("location")) return
 
-    this.setState({ locations: [] });
-    const location = localStorage.getItem("location").split(";");
-    document.querySelector(".search").value = `${location[2]}, ${location[3]}, ${location[4]}`;
+    this.setState({ locations: [] })
+    const location = localStorage.getItem("location").split(";")
+    document.querySelector(".search").value = `${location[2]}, ${location[3]}, ${location[4]}`
   }
 
   async showLocations(value) {
-    let url = new URL("https://secure.geonames.org/searchJSON?");
-    url.searchParams.set("q", value);
-    url.searchParams.append("lang", this.state.lang.lang);
-    url.searchParams.append("maxRows", 50);
-    url.searchParams.append("username", "zboczonyartur");
+    let url = new URL("https://secure.geonames.org/searchJSON?")
+    url.searchParams.set("q", value)
+    url.searchParams.append("lang", this.state.lang.lang)
+    url.searchParams.append("maxRows", 50)
+    url.searchParams.append("username", "zboczonyartur")
 
-    const api_call = await fetch(url);
-    const response = await api_call.json();
+    const api_call = await fetch(url)
+    const response = await api_call.json()
 
-    let array = [];
+    let array = []
     for (let i = 0; i < response.geonames.length; i++) {
       array.push(
         <div
           key={i}
           className="location"
           onClick={() => {
-            this.getWeather(
-              response.geonames[i].lat,
-              response.geonames[i].lng,
-              response.geonames[i].toponymName,
-              response.geonames[i].adminName1,
-              response.geonames[i].countryName
-            );
+            this.getWeather(response.geonames[i].lat, response.geonames[i].lng, response.geonames[i].toponymName, response.geonames[i].adminName1, response.geonames[i].countryName)
           }}
         >
           {response.geonames[i].toponymName},&nbsp;
           {response.geonames[i].adminName1},&nbsp;
           {response.geonames[i].countryName}
         </div>
-      );
+      )
     }
 
-    this.setState({ locations: array });
+    this.setState({ locations: array })
   }
 
   changeLanguage() {
-    const selectedLang = document.querySelector(".language").value;
+    const selectedLang = document.querySelector(".language").value
 
     if (selectedLang === "pl" && localStorage.getItem("lang") === "en") {
-      this.setState({ lang: lang_pl });
-      localStorage.setItem("lang", "pl");
-      this.getWeather(52.229675, 21.01223, "Warszawa", "Województwo mazowieckie", "Polska");
+      this.setState({ lang: lang_pl })
+      localStorage.setItem("lang", "pl")
+      this.getWeather(52.229675, 21.01223, "Warszawa", "Województwo mazowieckie", "Polska")
     } else if (selectedLang === "en" && localStorage.getItem("lang") === "pl") {
-      this.setState({ lang: lang_en });
-      localStorage.setItem("lang", "en");
-      this.getWeather(51.509865, -0.118092, "London", "England", "United Kingdom");
+      this.setState({ lang: lang_en })
+      localStorage.setItem("lang", "en")
+      this.getWeather(51.509865, -0.118092, "London", "England", "United Kingdom")
     }
 
-    this.setState({ displayed_weather: null });
+    this.setState({ displayed_weather: null })
   }
 
   render() {
-    let current = "";
-    let daily = "";
-    const weather_data = this.state.weather_data;
+    let current = ""
+    let daily = ""
+    const weather_data = this.state.weather_data
 
     if (weather_data != null) {
-      current = weather_data.current;
-      daily = weather_data.daily;
+      current = weather_data.current
+      daily = weather_data.daily
     }
 
-    if (this.state.displayed_weather != null) current = this.state.displayed_weather;
+    if (this.state.displayed_weather != null) current = this.state.displayed_weather
 
     return (
       <main onClick={this.resetSearch}>
@@ -151,17 +145,12 @@ export default class App extends React.PureComponent {
 
         <div className="main-content">
           <DayDetails lang={this.state.lang} current={current} />
-          <Clock
-            lang={this.state.lang}
-            sunrise={weather_data?.current.sunrise}
-            sunset={weather_data?.current.sunset}
-            onClick={() => this.setState({ displayed_weather: null })}
-          />
+          <Clock lang={this.state.lang} sunrise={weather_data?.current.sunrise} sunset={weather_data?.current.sunset} onClick={() => this.setState({ displayed_weather: null })} />
         </div>
 
         <Forecast lang={this.state.lang} daily={daily} onClick={(day) => this.setState({ displayed_weather: day })} />
       </main>
-    );
+    )
   }
 }
 
@@ -183,7 +172,7 @@ const lang_pl = {
     now: "Teraz",
     day_names: ["Niedziela", "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota"],
   },
-};
+}
 
 const lang_en = {
   lang: "en",
@@ -203,4 +192,4 @@ const lang_en = {
     now: "Now",
     day_names: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
   },
-};
+}

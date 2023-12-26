@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from "react";
-import "../App.css";
+import React, { useState, useEffect } from "react"
+import "../App.css"
 
 export default function Clock(props) {
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date())
 
   useEffect(() => {
-    const interval = setInterval(() => setDate(new Date()), 1000);
-    return () => clearInterval(interval);
-  }, []);
+    const interval = setInterval(() => setDate(new Date()), 1000)
+    return () => clearInterval(interval)
+  }, [])
 
   const sunrise_time = {
     hour: new Date(props.sunrise * 1000).toLocaleTimeString("en-GB", { hour: "2-digit", hour12: false }),
     minute: new Date(props.sunrise * 1000).toLocaleTimeString("en-GB", { minute: "2-digit", hour12: false }),
-  };
+  }
 
   const sunset_time = {
     hour: new Date(props.sunset * 1000).toLocaleTimeString("en-GB", { hour: "2-digit", hour12: false }),
     minute: new Date(props.sunset * 1000).toLocaleTimeString("en-GB", { minute: "2-digit", hour12: false }),
-  };
+  }
 
   return (
     <div className="clock">
@@ -36,5 +36,5 @@ export default function Clock(props) {
         {props.lang.words.show_actual_weather}
       </div>
     </div>
-  );
+  )
 }

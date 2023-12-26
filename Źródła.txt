@@ -1,3 +1,0 @@
-https://www.geonames.org
-https://openweathermap.org/ v2.5
-http://erikflowers.github.io/weather-icons/
