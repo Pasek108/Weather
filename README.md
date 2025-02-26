@@ -53,7 +53,7 @@ Programs:
 
 Or
 
-Clone this repo to your desktop and run `npm install` to install all the dependencies and then `npm start` to start development sever.
+- Clone this repo and run `npm install` to install all the dependencies and then `npm start` to start development sever.
 
 ## Acknowledgements
 - This project was inspired by [this pen](https://codepen.io/Hyperplexed/pen/vYpXNJd).
