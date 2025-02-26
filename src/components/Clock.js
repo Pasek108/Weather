@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import "../App.css"
+import "../styles/clock.css"
 
 export default function Clock(props) {
   const [date, setDate] = useState(new Date())
@@ -9,15 +9,8 @@ export default function Clock(props) {
     return () => clearInterval(interval)
   }, [])
 
-  const sunrise_time = {
-    hour: new Date(props.sunrise * 1000).toLocaleTimeString("en-GB", { hour: "2-digit", hour12: false }),
-    minute: new Date(props.sunrise * 1000).toLocaleTimeString("en-GB", { minute: "2-digit", hour12: false }),
-  }
-
-  const sunset_time = {
-    hour: new Date(props.sunset * 1000).toLocaleTimeString("en-GB", { hour: "2-digit", hour12: false }),
-    minute: new Date(props.sunset * 1000).toLocaleTimeString("en-GB", { minute: "2-digit", hour12: false }),
-  }
+  const sunrise_time = new Date(props.sunrise * 1000).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit",  hour12: false });
+  const sunset_time = new Date(props.sunset * 1000).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit",  hour12: false });
 
   return (
     <div className="clock">
@@ -26,10 +19,10 @@ export default function Clock(props) {
       <div className="date">{date.toLocaleDateString("en-GB")}</div>
       <div className="sunrise-sunset">
         <div title={props.lang.words.surise}>
-          <i className="wi wi-sunrise"></i> {sunrise_time.hour}:{sunrise_time.minute}
+          <i className="wi wi-sunrise"></i> {sunrise_time}
         </div>
         <div title={props.lang.words.sunset}>
-          <i className="wi wi-sunset"></i> {sunset_time.hour}:{sunset_time.minute}
+          <i className="wi wi-sunset"></i> {sunset_time}
         </div>
       </div>
       <div className="show-current-weather" onClick={props.onClick}>

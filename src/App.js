@@ -1,10 +1,14 @@
 import React from "react"
 import "./App.css"
+import "./styles/header.css"
 
 import SearchCity from "./components/SearchCity"
 import Clock from "./components/Clock"
 import DayDetails from "./components/DayDetails"
 import Forecast from "./components/Forecast"
+
+import fake_weather from './fake_weather.json'
+import API_KEY from './API_KEY.js'
 
 export default class App extends React.PureComponent {
   constructor(props) {
@@ -45,18 +49,20 @@ export default class App extends React.PureComponent {
     document.querySelector(".search").value = `${name}, ${adminName}, ${country}`
     localStorage.setItem("location", `${lat};${lon};${name};${adminName};${country}`)
 
-    let url = new URL("https://api.openweathermap.org/data/2.5/onecall")
-    url.searchParams.set("lat", x)
-    url.searchParams.append("lon", y)
+    let url = new URL(`https://api.pirateweather.net/forecast/${API_KEY}/${x},${y}`)
     url.searchParams.append("lang", localStorage.getItem("lang"))
-    url.searchParams.append("units", "metric")
-    url.searchParams.append("exclude", "minutely,alerts")
-    url.searchParams.append("appid", "c85db9a25d5b35109ec7aecb2d7ec070")
+    url.searchParams.append("units", "ca")
+    url.searchParams.append("exclude", "minutely,alerts,hourly")
 
-    const api_call = await fetch(url)
-    const response = await api_call.json()
-
-    this.setState({ weather_data: response })
+    let response;
+    try {
+      const api_call = await fetch(url)
+      response = await api_call.json()
+    } catch {
+      response = fake_weather
+    }
+    
+    this.setState({ weather_data: response, displayed_weather: null })
   }
 
   searchChange() {
@@ -126,7 +132,7 @@ export default class App extends React.PureComponent {
     const weather_data = this.state.weather_data
 
     if (weather_data != null) {
-      current = weather_data.current
+      current = weather_data.currently
       daily = weather_data.daily
     }
 
@@ -144,8 +150,8 @@ export default class App extends React.PureComponent {
         </header>
 
         <div className="main-content">
-          <DayDetails lang={this.state.lang} current={current} />
-          <Clock lang={this.state.lang} sunrise={weather_data?.current.sunrise} sunset={weather_data?.current.sunset} onClick={() => this.setState({ displayed_weather: null })} />
+          <DayDetails lang={this.state.lang} current={current} sunrise={weather_data?.daily.data[0].sunriseTime} sunset={weather_data?.daily.data[0].sunsetTime} />
+          <Clock lang={this.state.lang} sunrise={weather_data?.daily.data[0].sunriseTime} sunset={weather_data?.daily.data[0].sunsetTime} onClick={() => this.setState({ displayed_weather: null })} />
         </div>
 
         <Forecast lang={this.state.lang} daily={daily} onClick={(day) => this.setState({ displayed_weather: day })} />

@@ -1,29 +1,21 @@
 import React from "react"
-import "../App.css"
+import "../styles/weather-info.css"
 
 import WeatherIcon from "./WeatherIcon"
 
 export default function DayDetails(props) {
   if (props.current == null) return <div className="weather">Loading...</div>
 
-  let wind_speed = (props.current.wind_speed * 3.6).toFixed(2)
+  let wind_speed = props.current.windSpeed
 
-  let weather = { id: 0, description: "" }
-  if (props.current.weather != null) weather = props.current.weather[0]
-
-  let temp = props.current.temp
-  let feels_like = props.current.feels_like
-
-  if (temp?.day != null) {
-    temp = temp.day
-    feels_like = feels_like.day
-  }
+  let temp = props.current.temperature || ((props.current.temperatureHigh + props.current.temperatureLow) / 2)
+  let feels_like = props.current.apparentTemperature || ((props.current.apparentTemperatureHigh + props.current.apparentTemperatureLow) / 2)
 
   return (
     <div className="weather">
       <div className="day-weather">
-        <DayName date={props.current.dt} lang={props.lang} now={props.current.visibility != null} />
-        <WeatherDescription weather_description={weather.description} id={weather.id} sunrise={props.current.sunrise} sunset={props.current.sunset} />
+        <DayName date={props.current.time} lang={props.lang} now={props.current.temperature != null} />
+        <WeatherDescription weather_description={props.current.summary} id={props.current.icon} sunrise={props.sunrise} sunset={props.sunset} />
       </div>
 
       <div className="row weather-details">
@@ -34,7 +26,7 @@ export default function DayDetails(props) {
           <Pressure pressure={props.current.pressure} lang={props.lang} />
         </div>
         <div className="col">
-          <Clouds clouds={props.current.clouds} lang={props.lang} />
+          <Clouds clouds={props.current.cloudCover * 100} lang={props.lang} />
           <Visibility visibility={props.current.visibility} lang={props.lang} />
           <Wind wind_speed={wind_speed} wind_deg={props.current.wind_deg} lang={props.lang} />
           <Beaufort beaufort={wind_speed} lang={props.lang} />
@@ -64,7 +56,7 @@ export function DayName(props) {
 export function Temp(props) {
   return (
     <div className="temp">
-      <i className="wi wi-thermometer"></i> {props.temp} &deg;C
+      <i className="wi wi-thermometer"></i> {props.temp?.toFixed(2)} &deg;C
     </div>
   )
 }
@@ -72,7 +64,7 @@ export function Temp(props) {
 export function Feels(props) {
   return (
     <div className="feels">
-      {props.lang?.words.feels_like} {props.feels} &deg;C
+      {props.lang?.words.feels_like} {props.feels?.toFixed(2)} &deg;C
     </div>
   )
 }
