@@ -31,7 +31,7 @@ Languages:
 
 Libraries and frameworks:
 - [React](https://legacy.reactjs.org/blog/2020/10/20/react-v17.html) 17.0.1
-- [OpenWeather OneCall API v2.5](https://openweathermap.org/) 
+- [Pirate Weather](https://pirateweather.net) 
 - [Geonames API](https://www.geonames.org).
 - [Erik Flowers Weather Icons](http://erikflowers.github.io/weather-icons/)
   
