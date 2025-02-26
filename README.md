@@ -51,9 +51,16 @@ Programs:
 ## Setup
 - Use [live version](https://pasek108.github.io/Weather/).
 
-Or
+- Download this repository and:
+  - Open project in VSCode
+  - Run `npm install` to install all the dependencies
+  - Run  `npm start` to start development sever
+  - Open generated address in the browser
 
-- Clone this repo and run `npm install` to install all the dependencies and then `npm start` to start development sever.
+- Deployment for GitHub:
+  - Run `npm run build`
+  - Rename `/build` folder to `/docs`
+  - In `main.xxx.css` file replace all '/static' with '../media/'
 
 ## Acknowledgements
 - This project was inspired by [this pen](https://codepen.io/Hyperplexed/pen/vYpXNJd).
